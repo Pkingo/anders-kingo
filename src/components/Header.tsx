@@ -1,5 +1,22 @@
 import React, { FC } from "react"
-import { Link } from "gatsby"
+import { graphql, Link } from "gatsby"
+
+const getLecturesQuery = graphql`
+  query GetLecturesQuery {
+    allMdx(filter: { fileAbsolutePath: { regex: "/lectures/" } }) {
+      nodes {
+        frontmatter {
+          title
+          slug
+          image
+          imageAlt
+        }
+        fileAbsolutePath
+        rawBody
+      }
+    }
+  }
+`
 
 const DropdownMenuItem: FC<{
   slug: string

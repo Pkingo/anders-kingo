@@ -7,34 +7,35 @@ type Props = {
   description?: string
   image?: string
   path?: string
+  keywords?: string[]
 }
 
 export function Seo(props: Props) {
   const data = useStaticQuery(graphql`
-    query GetSiteMetadata {
-      site {
-        siteMetadata {
-          title
-          siteUrl
-          image
-          description
-        }
+    query GetConfigQuery {
+      contentYaml {
+        siteTitle
+        siteKeywords
+        baseUrl
+        siteDescription
       }
     }
   `)
 
-  const defaults = data?.site?.siteMetadata || {}
+  const defaults = data?.contentYaml || {}
 
-  const title = props.title || defaults.title
-  const description = props.description || defaults.description
-  const image = new URL(props.image || defaults.image, defaults.siteUrl)
-  const url = new URL(props.path || "/", defaults.siteUrl)
+  const title = props.title || defaults.siteTitle
+  const description = props.description || defaults.siteDescription
+  const image = new URL(props.image || defaults.image, defaults.baseUrl)
+  const url = new URL(props.path || "/", defaults.baseUrl)
+  const keywords = (props.keywords || defaults.siteKeywords).join(" ")
 
   return (
     <Helmet>
       <title>{title}</title>
       <meta name="description" content={description} />
       <link rel="canonical" href={url.href} />
+      <meta name="keywords" content={keywords} />
       {image ? <meta name="image" content={image.href} /> : null}
 
       <meta property="og:url" content={url.href} />
