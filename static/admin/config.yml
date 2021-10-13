@@ -1,23 +1,147 @@
 backend:
   name: git-gateway
+  # name: test-repo
   branch: main # Branch to update (optional; defaults to master)
-
-media_folder: static/img
-public_folder: /img
-
+media_folder: public/img
+public_folder: img
 collections:
-  - name: "blog"
-    label: "Blog"
-    folder: "content/blog"
-    create: true
-    slug: "index"
-    media_folder: ""
-    public_folder: ""
-    path: "{{title}}/index"
+  - name: "config"
+    label: "Indstillinger"
+    delete: false
     editor:
       preview: false
+    files:
+      - name: "general"
+        label: "Webstedsindstillinger"
+        description: "Generelle webstedsindstillinger"
+        file: "content/config.yml"
+        fields:
+          - label: "Side link"
+            name: "baseUrl"
+            widget: "string"
+            hint: "Do not enter the trailing slash of the URL"
+          - label: "Side titel"
+            name: "siteTitle"
+            widget: "string"
+          - label: "Side beskrivelse"
+            name: "siteDescription"
+            widget: "string"
+          - label: "Keywords"
+            name: "siteKeywords"
+            widget: "list"
+            summary: "{{fields.keyword.keyword}}"
+            field:
+              label: Keyword
+              name: keyword
+              widget: "string"
+
+  - name: "meta"
+    label: "Meta"
+    delete: false
+    editor:
+      preview: false
+    files:
+      - name: banner
+        label: Banner
+        file: "content/meta/banner.yml"
+        description: "Banner tekst"
+        fields:
+          - label: "Overskrift"
+            name: "header"
+            widget: "string"
+          - label: "Underhoved"
+            name: "subheader"
+            widget: string
+      - name: footer
+        label: Sidefod
+        file: "content/meta/footer.yml"
+        description: "Sidefod tekst"
+        fields:
+          - label: "Tekst"
+            name: "text"
+            widget: "string"
+
+  - name: "pages"
+    label: "Sider"
+    folder: "content/pages"
+    extension: "mdx"
+    format: "frontmatter"
+    slug: "{{slug}}"
+    identifier_field: slug
+    summary: "{{title}}"
     fields:
-      - { label: "Title", name: "title", widget: "string" }
-      - { label: "Publish Date", name: "date", widget: "datetime" }
-      - { label: "Description", name: "description", widget: "string" }
-      - { label: "Body", name: "body", widget: "markdown" }
+      - { label: "Titel", name: "title", widget: "string" }
+      - { label: "Sti", name: "slug", widget: "string" }
+      - { label: "Rubrik", name: "body", widget: "markdown" }
+      - { label: "Indeks", name: "index", widget: "number" }
+      - {
+          label: "Billede",
+          required: false,
+          name: "image",
+          widget: "image",
+          hint: "Husk at udfylde beskrivelsen af billedet",
+        }
+      - {
+          label: "Beskrivelse (billed)",
+          default: "Billed tekst",
+          name: "imageAlt",
+          widget: "string",
+          hint: "Denne tekst bliver brugt til folk, som ikke kan se billedet",
+        }
+
+  - name: lectures
+    label: Foredrag
+    folder: "content/lectures"
+    create: true
+    extension: "mdx"
+    format: "frontmatter"
+    slug: "{{slug}}"
+    identifier_field: slug
+    summary: "{{title}}"
+    fields:
+      - { label: "Titel", name: "title", widget: "string" }
+      - { label: "Sti", name: "slug", widget: "string" }
+      - { label: "Tekst", name: "body", widget: "markdown" }
+      - {
+          label: "Billede",
+          required: false,
+          name: "image",
+          widget: "image",
+          hint: "Husk at udfylde beskrivelsen af billedet",
+        }
+      - {
+          label: "Alternative oplysninger (billed)",
+          default: "Billed tekst",
+          name: "imageAlt",
+          widget: "string",
+          hint: "Denne tekst bliver brugt til folk, som ikke kan se billedet",
+        }
+
+  - name: travel-programs
+    label: "Kulturrejse programmer"
+    folder: "content/travel-programs"
+    create: true
+    extension: "mdx"
+    format: "frontmatter"
+    slug: "{{slug}}"
+    identifier_field: slug
+    summary: "{{title}}"
+    fields:
+      - { label: "Titel", name: "title", widget: "string" }
+      - label: "Dagsprogram"
+        name: "daily-program"
+        widget: list
+        fields:
+          - label: "Tekst"
+            name: "text"
+            widget: markdown
+          - label: "Billede"
+            name: "image"
+            widget: image
+            required: false
+            hint: "Husk at udfylde beskrivelsen af billedet"
+          - label: "Alternative oplysninger (billed)"
+            default: "Billed tekst"
+            name: "imageAlt"
+            widget: "string"
+            hint: "Denne tekst bliver brugt til folk, som ikke kan se billedet"
