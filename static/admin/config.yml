@@ -1,6 +1,6 @@
 backend:
-  name: git-gateway
-  # name: test-repo
+  # name: git-gateway
+  name: test-repo
   branch: main # Branch to update (optional; defaults to master)
 media_folder: public/img
 public_folder: img
@@ -66,28 +66,9 @@ collections:
     folder: "content/pages"
     extension: "mdx"
     format: "frontmatter"
-    slug: "{{slug}}"
-    identifier_field: slug
     summary: "{{title}}"
     fields:
       - { label: "Titel", name: "title", widget: "string" }
-      - { label: "Sti", name: "slug", widget: "string" }
-      - { label: "Rubrik", name: "body", widget: "markdown" }
-      - { label: "Indeks", name: "index", widget: "number" }
-      - {
-          label: "Billede",
-          required: false,
-          name: "image",
-          widget: "image",
-          hint: "Husk at udfylde beskrivelsen af billedet",
-        }
-      - {
-          label: "Beskrivelse (billed)",
-          default: "Billed tekst",
-          name: "imageAlt",
-          widget: "string",
-          hint: "Denne tekst bliver brugt til folk, som ikke kan se billedet",
-        }
 
   - name: lectures
     label: Foredrag
