@@ -1,7 +1,7 @@
 import React, { FC } from "react"
-import { Link } from "gatsby"
+import { graphql, Link } from "gatsby"
 
-// const getLecturesQuery = graphql`
+// export const query = graphql`
 //   query GetLecturesQuery {
 //     allMdx(filter: { fileAbsolutePath: { regex: "/lectures/" } }) {
 //       nodes {

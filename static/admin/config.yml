@@ -62,6 +62,7 @@ collections:
     summary: "{{title}}"
     fields:
       - { label: "Titel", name: "title", widget: "string" }
+      - { label: "tekst", name: "body", widget: "markdown" }
       - { label: "Billed", name: "image", widget: "image", required: false }
 
   - name: lectures
