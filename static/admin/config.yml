@@ -5,12 +5,35 @@ backend:
 media_folder: content/images
 public_folder: images
 collections:
-  - name: "meta"
-    label: "Meta"
+  - name: meta
+    label: Meta
     delete: false
     editor:
       preview: false
     files:
+      - name: general
+        label: "Webstedsindstillinger"
+        file: "content/meta/config.yml"
+        description: "Generelle webstedsindstillinger"
+        fields:
+          - name: "baseUrl"
+            label: "Side link"
+            widget: "string"
+            hint: "Hjemmesidens webadresse"
+          - name: "siteTitle"
+            label: "Side titel"
+            widget: "string"
+          - name: "siteDescription"
+            label: "Side beskrivelse"
+            widget: "string"
+          - name: "siteKeywords"
+            label: "Keywords"
+            widget: "list"
+            summary: "{{fields.keyword.keyword}}"
+            field:
+              label: Keyword
+              name: keyword
+              widget: "string"
       - name: banner
         label: Banner
         file: "content/meta/banner.yml"
@@ -30,31 +53,8 @@ collections:
           - label: "Tekst"
             name: "text"
             widget: "string"
-      - name: general
-        label: "Webstedsindstillinger"
-        description: "Generelle webstedsindstillinger"
-        file: "content/meta/config.yml"
-         - label: "Side link"
-            name: "baseUrl"
-            widget: "string"
-            hint: "Do not enter the trailing slash of the URL"
-          - label: "Side titel"
-            name: "siteTitle"
-            widget: "string"
-          - label: "Side beskrivelse"
-            name: "siteDescription"
-            widget: "string"
-          - label: "Keywords"
-            name: "siteKeywords"
-            widget: "list"
-            summary: "{{fields.keyword.keyword}}"
-            field:
-              label: Keyword
-              name: keyword
-              widget: "string"
 
-
-  - name: "pages"
+  - name: pages
     label: "Sider"
     folder: "content/pages"
     extension: "mdx"
