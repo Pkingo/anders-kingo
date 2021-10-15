@@ -12,17 +12,17 @@ type Props = {
 
 export function Seo(props: Props) {
   const data = useStaticQuery(graphql`
-    query GetConfigQuery {
-      contentYaml {
+    query ConfigQuery {
+      config {
         siteTitle
         siteKeywords
-        baseUrl
         siteDescription
+        baseUrl
       }
     }
   `)
 
-  const defaults = data?.contentYaml || {}
+  const defaults = data.config || {}
 
   const title = props.title || defaults.siteTitle
   const description = props.description || defaults.siteDescription

@@ -4,26 +4,40 @@ module.exports = {
     "gatsby-plugin-react-helmet",
     "gatsby-plugin-image",
     "gatsby-plugin-postcss",
+    `gatsby-plugin-sharp`,
+    `gatsby-transformer-sharp`,
+    `gatsby-transformer-remark`,
     {
-      resolve: "gatsby-source-filesystem",
+      resolve: `gatsby-source-filesystem`,
       options: {
-        name: "images",
-        path: `${__dirname}/content/images`,
+        name: `pages`,
+        path: `${__dirname}/content/pages`,
       },
     },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
-        name: `content`,
-        path: `${__dirname}/content`,
-        ignore: [`**/\.*`],
+        name: `meta`,
+        path: `${__dirname}/content/meta`,
       },
     },
-    "gatsby-transformer-sharp",
-    "gatsby-plugin-sharp",
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: "images",
+        path: `${__dirname}/content/images`,
+      },
+    },
     "gatsby-plugin-netlify-cms",
     "gatsby-plugin-netlify",
-    "gatsby-plugin-mdx",
-    "gatsby-transformer-yaml",
+    `gatsby-remark-images`,
+    `gatsby-plugin-mdx`,
+    {
+      resolve: "gatsby-transformer-yaml",
+      options: {
+        typeName: ({ node }) => node.name,
+      },
+    },
+    `gatsby-plugin-graphql-codegen`,
   ],
 }
