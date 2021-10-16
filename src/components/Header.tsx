@@ -1,22 +1,20 @@
 import React, { FC } from "react"
-import { graphql, Link } from "gatsby"
+import { graphql, Link, useStaticQuery } from "gatsby"
+import { HeaderContentQuery } from "../../graphql-types"
 
-// export const query = graphql`
-//   query GetLecturesQuery {
-//     allMdx(filter: { fileAbsolutePath: { regex: "/lectures/" } }) {
-//       nodes {
-//         frontmatter {
-//           title
-//           slug
-//           image
-//           imageAlt
-//         }
-//         fileAbsolutePath
-//         rawBody
-//       }
-//     }
-//   }
-// `
+const query = graphql`
+  query HeaderContent {
+    lectures: allMdx(filter: { fileAbsolutePath: { regex: "/lectures/" } }) {
+      nodes {
+        id
+        frontmatter {
+          title
+          slug
+        }
+      }
+    }
+  }
+`
 
 const DropdownMenuItem: FC<{
   slug: string
@@ -46,14 +44,13 @@ const MenuItem: FC<{ slug: string }> = ({ slug, children }) => (
 )
 
 export const Header = () => {
-  const lectures: { slug: string; title: string }[] = []
+  const data = useStaticQuery<HeaderContentQuery>(query)
+  const lectures = data.lectures.nodes.map(lecture => ({
+    slug: lecture.frontmatter?.slug || "/",
+    title: lecture.frontmatter?.title || "",
+  }))
   return (
-    <nav className="flex justify-between px-16 py-2">
-      <div>
-        <h2>
-          <Link to="/">Anders Kingo</Link>
-        </h2>
-      </div>
+    <nav className="flex justify-end px-8 py-4">
       <ul className="flex gap-4">
         <MenuItem slug="/">Hjem</MenuItem>
         <DropdownMenuItem items={lectures} slug="/foredrag">

@@ -14,8 +14,8 @@ export const Banner = () => {
   const { header, subheader } = data.banner
   return (
     <div className="bg-blue-greek text-white flex flex-col py-4">
-      <h2 className="w-main self-center">{header}</h2>
-      <h4 className="w-main self-center">{subheader}</h4>
+      <h2 className="w-11/12 lg:w-main self-center">{header}</h2>
+      <h4 className="w-11/12 lg:w-main self-center">{subheader}</h4>
     </div>
   )
 }

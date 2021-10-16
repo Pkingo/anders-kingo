@@ -12,13 +12,12 @@ module.exports = {
         },
       },
       width: {
-        main: "60rem",
+        main: "1024px",
       },
     },
   },
   variants: {
     display: ["group-hover"],
-    extend: {},
   },
   plugins: [],
 }

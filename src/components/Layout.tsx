@@ -11,15 +11,19 @@ type Props = {
   description?: string
   image?: string
   path?: string
+  classNames?: string
 }
 
-export const Layout: FC<Props> = ({
+const Layout: FC<Props> = ({
   children,
   title,
   description,
   image,
   path,
+  classNames,
+  ...props
 }) => {
+  console.log({ title, description, image, path, classNames, ...props })
   return (
     <>
       <Seo title={title} description={description} image={image} path={path} />
@@ -28,7 +32,10 @@ export const Layout: FC<Props> = ({
           <Header />
           <Banner />
         </div>
-        <div className="mb-auto mx-auto w-main py-4" id="content">
+        <div
+          className={`mb-auto mx-auto w-11/12 lg:w-main py-4 ${classNames}`}
+          id="content"
+        >
           {children}
         </div>
         <Footer />
@@ -36,3 +43,5 @@ export const Layout: FC<Props> = ({
     </>
   )
 }
+
+export default Layout

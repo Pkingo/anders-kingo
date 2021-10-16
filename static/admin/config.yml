@@ -2,7 +2,7 @@ backend:
   name: git-gateway
   # name: test-repo
   branch: main # Branch to update (optional; defaults to master)
-media_folder: content/images
+media_folder: src/images
 public_folder: images
 collections:
   - name: meta
@@ -13,7 +13,7 @@ collections:
     files:
       - name: general
         label: "Webstedsindstillinger"
-        file: "content/meta/config.yml"
+        file: "src/meta/config.yml"
         description: "Generelle webstedsindstillinger"
         fields:
           - name: "baseUrl"
@@ -36,7 +36,7 @@ collections:
               widget: "string"
       - name: banner
         label: Banner
-        file: "content/meta/banner.yml"
+        file: "src/meta/banner.yml"
         description: "Banner tekst"
         fields:
           - label: "Overskrift"
@@ -47,7 +47,7 @@ collections:
             widget: string
       - name: footer
         label: Sidefod
-        file: "content/meta/footer.yml"
+        file: "src/meta/footer.yml"
         description: "Sidefod tekst"
         fields:
           - label: "Tekst"
@@ -56,18 +56,17 @@ collections:
 
   - name: pages
     label: "Sider"
-    folder: "content/pages"
+    folder: "src/pages"
     extension: "mdx"
     format: "frontmatter"
     summary: "{{title}}"
     fields:
       - { label: "Titel", name: "title", widget: "string" }
       - { label: "tekst", name: "body", widget: "markdown" }
-      - { label: "Billed", name: "image", widget: "image", required: false }
 
   - name: lectures
     label: Foredrag
-    folder: "content/lectures"
+    folder: "src/foredrag"
     create: true
     extension: "mdx"
     format: "frontmatter"
@@ -78,24 +77,10 @@ collections:
       - { label: "Titel", name: "title", widget: "string" }
       - { label: "Sti", name: "slug", widget: "string" }
       - { label: "Tekst", name: "body", widget: "markdown" }
-      - {
-          label: "Billede",
-          required: false,
-          name: "image",
-          widget: "image",
-          hint: "Husk at udfylde beskrivelsen af billedet",
-        }
-      - {
-          label: "Alternative oplysninger (billed)",
-          default: "Billed tekst",
-          name: "imageAlt",
-          widget: "string",
-          hint: "Denne tekst bliver brugt til folk, som ikke kan se billedet",
-        }
 
   - name: travel-programs
     label: "Kulturrejse programmer"
-    folder: "content/travel-programs"
+    folder: "src/kulturrejser"
     create: true
     extension: "mdx"
     format: "frontmatter"
@@ -111,13 +96,3 @@ collections:
           - label: "Tekst"
             name: "text"
             widget: markdown
-          - label: "Billede"
-            name: "image"
-            widget: image
-            required: false
-            hint: "Husk at udfylde beskrivelsen af billedet"
-          - label: "Alternative oplysninger (billed)"
-            default: "Billed tekst"
-            name: "imageAlt"
-            widget: "string"
-            hint: "Denne tekst bliver brugt til folk, som ikke kan se billedet"
