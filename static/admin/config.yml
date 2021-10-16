@@ -2,8 +2,8 @@ backend:
   name: git-gateway
   # name: test-repo
   branch: main # Branch to update (optional; defaults to master)
-media_folder: src/images
-public_folder: images
+media_folder: static/img
+public_folder: /img
 collections:
   - name: meta
     label: Meta
