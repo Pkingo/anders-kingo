@@ -4,13 +4,35 @@ import { HeaderContentQuery } from "../../graphql-types"
 
 const query = graphql`
   query HeaderContent {
-    lectures: allMdx(filter: { fileAbsolutePath: { regex: "/lectures/" } }) {
+    lectures: allMdx(filter: { fileAbsolutePath: { regex: "/foredrag//" } }) {
       nodes {
         id
         frontmatter {
           title
-          slug
         }
+        slug
+      }
+    }
+    travels: allMdx(
+      filter: { fileAbsolutePath: { regex: "/kulturrejser//" } }
+    ) {
+      nodes {
+        id
+        frontmatter {
+          title
+        }
+        slug
+      }
+    }
+    projects: allMdx(
+      filter: { fileAbsolutePath: { regex: "/mine-projekter//" } }
+    ) {
+      nodes {
+        id
+        frontmatter {
+          title
+        }
+        slug
       }
     }
   }
@@ -29,7 +51,7 @@ const DropdownMenuItem: FC<{
             key={item.slug}
             className="py-1 block text-blue-greek font-bold text-base uppercase hover:underline"
           >
-            <Link to={`${slug}/${item.slug}`}>{item.title}</Link>
+            <Link to={`/${item.slug}`}>{item.title}</Link>
           </li>
         ))}
       </ul>
@@ -46,9 +68,18 @@ const MenuItem: FC<{ slug: string }> = ({ slug, children }) => (
 export const Header = () => {
   const data = useStaticQuery<HeaderContentQuery>(query)
   const lectures = data.lectures.nodes.map(lecture => ({
-    slug: lecture.frontmatter?.slug || "/",
+    slug: lecture.slug || "/",
     title: lecture.frontmatter?.title || "",
   }))
+  const travels = data.travels.nodes.map(travel => ({
+    slug: travel.slug || "/",
+    title: travel.frontmatter?.title || "",
+  }))
+  const projects = data.projects.nodes.map(project => ({
+    slug: project.slug || "/",
+    title: project.frontmatter?.title || "",
+  }))
+
   return (
     <nav className="flex justify-end px-8 py-4">
       <ul className="flex gap-4">
@@ -56,8 +87,12 @@ export const Header = () => {
         <DropdownMenuItem items={lectures} slug="/foredrag">
           Foredrag
         </DropdownMenuItem>
-        <MenuItem slug="/kulturrejser">Kulturrejser</MenuItem>
-        <MenuItem slug="/mine-projekter">Mine projekter</MenuItem>
+        <DropdownMenuItem items={travels} slug="/kulturrejser">
+          Kulturrejser
+        </DropdownMenuItem>
+        <DropdownMenuItem items={projects} slug="/mine-projekter">
+          Mine projekter
+        </DropdownMenuItem>
         <MenuItem slug="/publikationer">Publikationer</MenuItem>
         <MenuItem slug="/kontakt">Kontakt</MenuItem>
       </ul>

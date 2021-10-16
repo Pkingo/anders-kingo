@@ -8,10 +8,6 @@ module.exports = {
     "gatsby-plugin-postcss",
 
     // Handle images
-    "gatsby-plugin-image",
-    "gatsby-transformer-sharp",
-    "gatsby-plugin-sharp",
-    "gatsby-transformer-remark",
     "gatsby-remark-images",
 
     // Hook up to Netlify CMS
@@ -51,36 +47,18 @@ module.exports = {
       },
     },
     {
-      resolve: `gatsby-source-filesystem`,
-      options: {
-        name: `foredrag`,
-        path: `${__dirname}/src/foredrag`,
-      },
-    },
-    {
-      resolve: `gatsby-plugin-page-creator`,
-      options: {
-        path: `${__dirname}/src/foredrag`,
-      },
-    },
-    {
-      resolve: `gatsby-source-filesystem`,
-      options: {
-        name: `kulturrejser`,
-        path: `${__dirname}/src/kulturrejser`,
-      },
-    },
-    {
-      resolve: `gatsby-plugin-page-creator`,
-      options: {
-        path: `${__dirname}/src/kulturrejser`,
-      },
-    },
-    {
       resolve: `gatsby-plugin-mdx`,
       options: {
+        gatsbyRemarkPlugins: [
+          {
+            resolve: `gatsby-remark-images`,
+            options: {
+              maxWidth: 590,
+            },
+          },
+        ],
         defaultLayouts: {
-          default: require.resolve("./src/components/PageLayout.tsx"),
+          default: require.resolve("./src/components/Layout.tsx"),
         },
       },
     },

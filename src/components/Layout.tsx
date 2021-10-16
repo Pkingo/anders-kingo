@@ -7,36 +7,29 @@ import { Footer } from "./Footer"
 import "../styles/global.css"
 
 type Props = {
-  title?: string
-  description?: string
-  image?: string
-  path?: string
-  classNames?: string
+  location: Location
+  pageContext: {
+    frontmatter: {
+      title: string
+    }
+  }
+  path: string
+  uri: string
 }
 
-const Layout: FC<Props> = ({
-  children,
-  title,
-  description,
-  image,
-  path,
-  classNames,
-  ...props
-}) => {
-  console.log({ title, description, image, path, classNames, ...props })
+const Layout: FC<Props> = props => {
+  const title = props.pageContext.frontmatter.title
+  const path = props.location.href
   return (
     <>
-      <Seo title={title} description={description} image={image} path={path} />
+      <Seo title={title} path={path} />
       <main className="flex flex-col h-screen justify-between">
         <div>
           <Header />
           <Banner />
         </div>
-        <div
-          className={`mb-auto mx-auto w-11/12 lg:w-main py-4 ${classNames}`}
-          id="content"
-        >
-          {children}
+        <div className="mb-auto mx-auto w-11/12 lg:w-main py-4" id="content">
+          {props.children}
         </div>
         <Footer />
       </main>
