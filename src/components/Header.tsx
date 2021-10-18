@@ -1,6 +1,9 @@
-import React, { FC } from "react"
+import React, { FC, useState } from "react"
 import { graphql, Link, useStaticQuery } from "gatsby"
 import { HeaderContentQuery } from "../../graphql-types"
+import { MenuIcon } from "./icons/MenuIcon"
+import cx from "classnames"
+import { CloseIcon } from "./icons/CloseIcon"
 
 const query = graphql`
   query HeaderContent {
@@ -37,12 +40,16 @@ const query = graphql`
     }
   }
 `
+type MenuItem = {
+  slug: string
+  title: string
+}
 
 const DropdownMenuItem: FC<{
   slug: string
-  items: { slug: string; title: string }[]
+  items: MenuItem[]
 }> = ({ slug, items, children }) => (
-  <li className="self-center group relative dropdown  px-4 text-blue-greek font-bold text-base uppercase tracking-wide hover:underline">
+  <li className="lg:self-center group relative dropdown px-4 text-blue-greek font-bold text-base uppercase tracking-wide hover:underline truncate">
     <Link to={slug}>{children}</Link>
     <div className="group-hover:block dropdown-menu absolute hidden h-auto -left-3">
       <ul className="top-0 w-max bg-white shadow px-6 py-4">
@@ -60,12 +67,13 @@ const DropdownMenuItem: FC<{
 )
 
 const MenuItem: FC<{ slug: string }> = ({ slug, children }) => (
-  <li className="self-center  text-blue-greek font-bold uppercase tracking-wide hover:underline">
+  <li className="lg:self-center px-4 text-blue-greek font-bold uppercase tracking-wide hover:underline truncate">
     <Link to={slug}>{children}</Link>
   </li>
 )
 
 export const Header = () => {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const data = useStaticQuery<HeaderContentQuery>(query)
   const lectures = data.lectures.nodes.map(lecture => ({
     slug: lecture.slug || "/",
@@ -81,8 +89,30 @@ export const Header = () => {
   }))
 
   return (
-    <nav className="flex justify-end px-8 py-4">
-      <ul className="flex gap-4">
+    <nav className="flex justify-between px-8 py-4">
+      <div
+        className="visible lg:invisible cursor-pointer text-blue-greek"
+        onClick={() => setIsMobileMenuOpen(true)}
+      >
+        <MenuIcon />
+      </div>
+      <ul
+        className={cx(
+          "flex gap-4 flex-col w-full bg-white z-10 transition-all duration-1000 ease-out h-screen absolute",
+          "lg:flex-row lg:h-auto lg:w-auto lg:sticky",
+          "md:w-1/2",
+          {
+            "left-0": isMobileMenuOpen,
+            "-left-full": !isMobileMenuOpen,
+          }
+        )}
+      >
+        <div
+          onClick={() => setIsMobileMenuOpen(false)}
+          className="visible lg:invisible cursor-pointer self-end px-4 text-blue-greek"
+        >
+          <CloseIcon />
+        </div>
         <MenuItem slug="/">Hjem</MenuItem>
         <DropdownMenuItem items={lectures} slug="/foredrag">
           Foredrag

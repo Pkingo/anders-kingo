@@ -8,7 +8,8 @@ module.exports = {
     extend: {
       colors: {
         blue: {
-          greek: "#0d5eaf",
+          // greek: "#0d5eaf",
+          greek: "#123c69",
         },
       },
       width: {
