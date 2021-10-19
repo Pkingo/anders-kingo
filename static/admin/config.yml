@@ -13,7 +13,7 @@ collections:
     files:
       - name: general
         label: "Webstedsindstillinger"
-        file: "src/meta/config.yml"
+        file: "src/content/meta/config.yml"
         description: "Generelle webstedsindstillinger"
         fields:
           - name: "baseUrl"
@@ -36,7 +36,7 @@ collections:
               widget: "string"
       - name: banner
         label: Banner
-        file: "src/meta/banner.yml"
+        file: "src/content/meta/banner.yml"
         description: "Banner tekst"
         fields:
           - label: "Overskrift"
@@ -47,7 +47,7 @@ collections:
             widget: string
       - name: footer
         label: Sidefod
-        file: "src/meta/footer.yml"
+        file: "src/content/meta/footer.yml"
         description: "Sidefod tekst"
         fields:
           - label: "Tekst"
@@ -56,17 +56,30 @@ collections:
 
   - name: pages
     label: "Sider"
-    folder: "src/pages"
+    folder: "src/content/pages"
     extension: "mdx"
     format: "frontmatter"
     summary: "{{title}}"
     fields:
       - { label: "Titel", name: "title", widget: "string" }
-      - { label: "tekst", name: "body", widget: "markdown" }
+      - { label: "Tekst", name: "body", widget: "markdown" }
+      - { label: "Billed", name: "image", widget: "image", required: false }
+      - {
+          label: "Billed tekst",
+          name: "imageAlt",
+          widget: "string",
+          required: false,
+        }
+      - {
+          label: "Billed tItel",
+          name: "imageTitle",
+          widget: "stirng",
+          required: false,
+        }
 
   - name: lectures
     label: Foredrag
-    folder: "src/pages/foredrag"
+    folder: "src/content/pages/foredrag"
     create: true
     extension: "mdx"
     format: "frontmatter"
@@ -77,7 +90,7 @@ collections:
 
   - name: travels
     label: Kulturrejseprogrammer
-    folder: "src/pages/kulturrejser"
+    folder: "src/content/pages/kulturrejser"
     create: true
     extension: "mdx"
     format: "frontmatter"
@@ -88,7 +101,7 @@ collections:
 
   - name: projects
     label: "Mine Projekter"
-    folder: "src/pages/mine-projekter"
+    folder: "src/content/pages/mine-projekter"
     create: true
     extension: "mdx"
     format: "frontmatter"

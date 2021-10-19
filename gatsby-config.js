@@ -25,17 +25,12 @@ module.exports = {
     "gatsby-plugin-netlify",
 
     // Generate content from YAML files
-    {
-      resolve: "gatsby-transformer-remark",
-      options: {
-        plugins: ["gatsby-remark-unwrap-images"],
-      },
-    },
+    "gatsby-transformer-remark",
     {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `meta`,
-        path: `${__dirname}/src/meta/`,
+        path: `${__dirname}/src/content/meta/`,
       },
     },
     {
@@ -53,30 +48,13 @@ module.exports = {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `pages`,
-        path: `${__dirname}/src/pages`,
-      },
-    },
-    {
-      resolve: `gatsby-plugin-page-creator`,
-      options: {
-        path: `${__dirname}/src/pages`,
+        path: `${__dirname}/src/content/pages`,
       },
     },
     {
       resolve: `gatsby-plugin-mdx`,
       options: {
         plugins: [`gatsby-remark-images`],
-        gatsbyRemarkPlugins: [
-          {
-            resolve: `gatsby-remark-images`,
-            options: {
-              maxWidth: 590,
-            },
-          },
-        ],
-        defaultLayouts: {
-          default: require.resolve("./src/components/Layout.tsx"),
-        },
       },
     },
   ],
