@@ -51,7 +51,7 @@ export default ({ data, path }: PageProps<PageQuery>) => {
           <MDXRenderer>{body}</MDXRenderer>
         </MDXProvider>
         {image && (
-          <figure className="col-start-2 row-start-2 row-end-7">
+          <figure className="col-start-2 row-start-2 row-end-7 mx-auto py-4 gap-2">
             <GatsbyImage
               className=""
               image={image}

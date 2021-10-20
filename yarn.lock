@@ -6709,20 +6709,6 @@ gatsby-page-utils@^1.13.0:
     lodash "^4.17.21"
     micromatch "^4.0.4"
 
-gatsby-page-utils@^1.14.0:
-  version "1.14.0"
-  resolved "https://registry.yarnpkg.com/gatsby-page-utils/-/gatsby-page-utils-1.14.0.tgz#c7363cf20d43c3d32d5293a5cd1bf9e6be501b09"
-  integrity sha512-Hjyxq4XnbUYCaYc5Ta7xXML1S3qLNkTv3xYQn2W91LuVDY4/u27LaOgzIYOVPMlHUSfocfhu0CMFmXw4fOjGFg==
-  dependencies:
-    "@babel/runtime" "^7.15.4"
-    bluebird "^3.7.2"
-    chokidar "^3.5.2"
-    fs-exists-cached "^1.0.0"
-    gatsby-core-utils "^2.14.0"
-    glob "^7.1.7"
-    lodash "^4.17.21"
-    micromatch "^4.0.4"
-
 gatsby-plugin-graphql-codegen@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/gatsby-plugin-graphql-codegen/-/gatsby-plugin-graphql-codegen-3.0.0.tgz#cc263e6b12271e2441366219075b98b7e1b54334"
@@ -6843,23 +6829,6 @@ gatsby-plugin-page-creator@^3.13.0:
     gatsby-core-utils "^2.13.0"
     gatsby-page-utils "^1.13.0"
     gatsby-telemetry "^2.13.0"
-    globby "^11.0.4"
-    lodash "^4.17.21"
-
-gatsby-plugin-page-creator@^3.14.0:
-  version "3.14.0"
-  resolved "https://registry.yarnpkg.com/gatsby-plugin-page-creator/-/gatsby-plugin-page-creator-3.14.0.tgz#d16eba7e270206207309576200881dd95cc46cde"
-  integrity sha512-Y7Ims8CkdDpDYrr/42aFM4wTdpBTxIYe7VakdV8m0fJGb1OdD1W/7Wc9yOj+yBTqMgeeXXp45pg26wsjiG5H9w==
-  dependencies:
-    "@babel/runtime" "^7.15.4"
-    "@babel/traverse" "^7.15.4"
-    "@sindresorhus/slugify" "^1.1.2"
-    chokidar "^3.5.2"
-    fs-exists-cached "^1.0.0"
-    gatsby-core-utils "^2.14.0"
-    gatsby-page-utils "^1.14.0"
-    gatsby-plugin-utils "^1.14.0"
-    gatsby-telemetry "^2.14.0"
     globby "^11.0.4"
     lodash "^4.17.21"
 

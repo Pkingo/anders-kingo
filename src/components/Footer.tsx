@@ -12,7 +12,7 @@ export const Footer = () => {
   const text = data.footer.text
   return (
     <div className="bg-blue-greek flex justify-center p-10">
-      <p className="text-white">{text}</p>
+      <p className="text-white text-center">{text}</p>
     </div>
   )
 }
