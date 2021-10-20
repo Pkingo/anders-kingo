@@ -4,6 +4,9 @@ import { MDXRenderer } from "gatsby-plugin-mdx"
 import Layout from "../components/Layout"
 import { PageQuery } from "../../graphql-types"
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
+import { MDXProvider } from "@mdx-js/react"
+import cx from "classnames"
+import { components } from "../components/overrides"
 
 export const query = graphql`
   query Page($slug: String!) {
@@ -39,10 +42,23 @@ export default ({ data, path }: PageProps<PageQuery>) => {
   })
   return (
     <Layout title={title} path={path}>
-      <MDXRenderer>{body}</MDXRenderer>
-      {image && (
-        <GatsbyImage image={image} alt={imageAlt || title} title={imageTitle} />
-      )}
+      <div
+        className={cx("gap-4", {
+          "lg:grid lg:grid-cols-2": Boolean(image),
+        })}
+      >
+        <MDXProvider components={components}>
+          <MDXRenderer>{body}</MDXRenderer>
+        </MDXProvider>
+        {image && (
+          <GatsbyImage
+            className="col-start-2 row-start-2 row-end-7"
+            image={image}
+            alt={imageAlt || title}
+            title={imageTitle}
+          />
+        )}
+      </div>
     </Layout>
   )
 }

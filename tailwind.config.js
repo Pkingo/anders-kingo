@@ -20,6 +20,7 @@ module.exports = {
   variants: {
     extend: {
       display: ["group-hover"],
+      fontWeight: ["hover"],
     },
   },
   plugins: [],

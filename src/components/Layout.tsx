@@ -65,10 +65,7 @@ const Layout: FC<Props> = props => {
           <Header />
           <Banner />
         </div>
-        <div
-          className="lg:grid lg:grid-cols-2 mb-auto mx-auto w-11/12 lg:w-main py-8"
-          id="content"
-        >
+        <div className="mb-auto mx-auto w-11/12 lg:w-main py-8" id="content">
           {/* <MDXProvider components={components}>{props.children}</MDXProvider> */}
           {props.children}
         </div>
