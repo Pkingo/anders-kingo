@@ -99,6 +99,7 @@ collections:
           name: "imageTitle",
           widget: "string",
           required: false,
+        }
 
   - name: travels
     label: Kulturrejseprogrammer
@@ -133,3 +134,4 @@ collections:
           name: "imageTitle",
           widget: "string",
           required: false,
+        }
