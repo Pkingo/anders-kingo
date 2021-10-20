@@ -71,7 +71,7 @@ collections:
           required: false,
         }
       - {
-          label: "Billed tItel",
+          label: "Billed titel",
           name: "imageTitle",
           widget: "string",
           required: false,
@@ -87,6 +87,18 @@ collections:
     fields:
       - { label: "Titel", name: "title", widget: "string" }
       - { label: "Tekst", name: "body", widget: "markdown" }
+      - { label: "Billed", name: "image", widget: "image", required: false }
+      - {
+          label: "Billed tekst",
+          name: "imageAlt",
+          widget: "string",
+          required: false,
+        }
+      - {
+          label: "Billed titel",
+          name: "imageTitle",
+          widget: "string",
+          required: false,
 
   - name: travels
     label: Kulturrejseprogrammer
@@ -109,3 +121,15 @@ collections:
     fields:
       - { label: "Titel", name: "title", widget: "string" }
       - { label: "Tekst", name: "body", widget: "markdown" }
+      - { label: "Billed", name: "image", widget: "image", required: false }
+      - {
+          label: "Billed tekst",
+          name: "imageAlt",
+          widget: "string",
+          required: false,
+        }
+      - {
+          label: "Billed titel",
+          name: "imageTitle",
+          widget: "string",
+          required: false,

@@ -51,12 +51,17 @@ export default ({ data, path }: PageProps<PageQuery>) => {
           <MDXRenderer>{body}</MDXRenderer>
         </MDXProvider>
         {image && (
-          <GatsbyImage
-            className="col-start-2 row-start-2 row-end-7"
-            image={image}
-            alt={imageAlt || title}
-            title={imageTitle}
-          />
+          <figure className="col-start-2 row-start-2 row-end-7">
+            <GatsbyImage
+              className=""
+              image={image}
+              alt={imageAlt || title}
+              title={imageTitle}
+            />
+            {imageTitle ? (
+              <figcaption className="italic">{imageTitle}</figcaption>
+            ) : null}
+          </figure>
         )}
       </div>
     </Layout>

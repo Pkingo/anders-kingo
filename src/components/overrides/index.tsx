@@ -1,5 +1,6 @@
 import { Anchor } from "./Anchor"
 import { H1, H2, H3, H4, H5, H6 } from "./Headline"
+import { Img } from "./Img"
 import { Ul, Li } from "./List"
 import { Paragraph } from "./Paragraph"
 
@@ -14,4 +15,5 @@ export const components = {
   li: Li,
   p: Paragraph,
   a: Anchor,
+  img: Img,
 }
