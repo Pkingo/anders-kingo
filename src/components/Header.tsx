@@ -49,7 +49,7 @@ const DropdownMenuItem: FC<{
   slug: string
   items: MenuItem[]
 }> = ({ slug, items, children }) => (
-  <li className="md:self-center group relative dropdown text-blue-greek font-bold text-base uppercase tracking-wide">
+  <li className="pl-4 md:pl-0 md:self-center group relative dropdown text-blue-greek font-bold text-base uppercase tracking-wide">
     <Link className="hover:underline" to={slug}>
       {children}
     </Link>
@@ -69,7 +69,7 @@ const DropdownMenuItem: FC<{
 )
 
 const MenuItem: FC<{ slug: string }> = ({ slug, children }) => (
-  <li className="md:self-center text-blue-greek font-bold uppercase tracking-wide hover:underline">
+  <li className="pl-4 md:pl-0 md:self-center text-blue-greek font-bold uppercase tracking-wide hover:underline">
     <Link to={slug}>{children}</Link>
   </li>
 )
@@ -100,7 +100,7 @@ export const Header = () => {
       </div>
       <ul
         className={cx(
-          "flex gap-4 flex-col w-full bg-white transition-all duration-500 ease-out h-screen absolute",
+          "flex gap-4 flex-col w-full bg-white transition-all duration-500 ease-out h-screen absolute z-10",
           "md:flex-row md:h-auto md:w-auto md:sticky",
           "sm:w-1/2",
           {
